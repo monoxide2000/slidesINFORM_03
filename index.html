@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Informática 1 - slides_03</title>
+
+		<meta name="description" content="InfoTheory - introCourse>
+		<meta name="author" content="Julio Ramírez-Pacheco">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Kaushan+Script&display=swap" rel="stylesheet">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<link rel="stylesheet" href="css/user.css">
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="myLogo" style="background: url(img/logoUQRoo.png);
+												position: absolute;
+												bottom: 40px;
+												right: 80px;
+												width: 190px;
+												height: 100px;
+												background-size: cover;">
+		</div>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-family: 'Kaushan Script', cursive; font-size: 3.1em;"><span style="text-transform: capitalize;"><span>Informática 1</span></h1>
+					<h3 style="font-family: 'Kaushan Script', cursive;"><span style="text-transform: capitalize;">Lógica Binaria</span></h3>
+					<p style="font-family: 'Dancing Script', cursive;">Dr. Julio César Ramírez-Pacheco</p>
+					<p style="font-size:1.5rem">Presentación en: <a style="color:#f4a261;" href="https://monoxide2000.github.io/slidesINFORM_02">https://monoxide2000.github.io/slidesINFORM_03</a></p>
+
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Contenido</h2>
+					<ul>
+						<li class="fragment">Puertas lógicas.</li>
+						<li class="fragment">Álgebra de Boole.</li>
+						<ul>
+						    <li class="fragment">Identidades.</li>
+						    <li class="fragment">Manipulación.</li>
+								<li class="fragment">Complemento de una función.</li>
+				  	</ul>
+						<li class="fragment">Implementación de funciones Booleanas.</li>
+					</ul>
+				</section>
+
+				<section data-transition="zoom">
+					  <h2>Introducción</h2>
+			      <ul>
+			      	<li class="fragment" style = "text-align: justify;">La matemática detrás del diseño y análisis de circuitos digitales es el álgebra de Boole.</li>
+			      	<li class="fragment" style = "text-align: justify;">El álgebra de Boole, como el ágebra convencional, se basa en una serie de postulados y teoremas que permiten reducir una función  a su mínima expresión.</li>
+			      	<li class="fragment" style = "text-align: justify;">Las compuertas lógicas son dispositivos electrónicos que permiten implementar funciones Booleanas.</li>
+			      	<li class="fragment" style = "text-align: justify;">Mediante, el álgebra de Boole y las puertas lógicas, se diseñan multiplexores, decodificadores que son útiles en cualquier sistema digital.</li>
+			      </ul>
+				</section>
+
+
+				<section data-transition="zoom">
+				      <h2>Álgebra de Boole.</h2>
+							<div class="fragment">
+										<div style="font-family: 'Pacifico';" class="def-block">
+										Definición
+										</div>
+										<div class="def-block-eq">
+										<p style="padding:0; margin:5px;">
+											El conjunto <span style="color: #f4a261;">$\{B, +, \cdot, \stackrel{\overline{}}{} \}$</span>, donde <span style="color: #f4a261;">$B$</span> es el conjunto de elementos o constantes del álgebra,
+											los símbolos <span style="color: #f4a261;">$+$</span> y <span style="color: #f4a261;">$\cdot$</span> son dos operadores binarios y la barra <span style="color: #f4a261;">$\stackrel{\overline{}}{}$</span> es un operador unario es un
+											álgebra Booleana si se cumple con los postulados de Huntington.
+										</p>
+									  </div>
+						  </div>
+					</section>
+
+
+					<section data-transition="zoom">
+						  <h2>Postulados de Huntington</h2>
+				      <ul>
+				      	<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">Cerradura: </span> Para todos los elementos <span style="color: #f4a261;">a</span> y <span style="color: #f4a261;">b</span> en el conjunto <span style="color: #f4a261;">$B$</span>.</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a+b \,$</span> es un elemento de $B$.</li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a\cdot b \,$</span> es un elemento de $B$.</li>
+								</ul>
+								<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">Identidad: </span> Para todos los elementos <span style="color: #f4a261;">a</span> y <span style="color: #f4a261;">b</span> en el conjunto <span style="color: #f4a261;">$B$</span>.</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a+0 = 0+a = a \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$b\cdot 1 = 1 \cdot b = b \,$</span></li>
+								</ul>
+				      </ul>
+					</section>
+
+					<section data-transition="zoom">
+						  <h2>Postulados de Huntington</h2>
+				      <ul>
+				      	<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">Conmutatividad: </span> Para todos los elementos <span style="color: #f4a261;">a</span> y <span style="color: #f4a261;">b</span> en el conjunto <span style="color: #f4a261;">$B$</span>.</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a+b = b+a \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a\cdot b = b\cdot a \,$</span></li>
+								</ul>
+								<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">Distributividad: </span> Para todos los elementos <span style="color: #f4a261;">a</span>, <span style="color: #f4a261;">b</span> y <span style="color: #f4a261;">c</span> en el conjunto <span style="color: #f4a261;">$B$</span>.</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a \cdot (b+c) = (a\cdot b) + (a \cdot c) \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a + (b\cdot c) = (a+b)\cdot (a+c) \,$</span></li>
+								</ul>
+				      </ul>
+					</section>
+
+					<section data-transition="zoom">
+						  <h2>Postulados de Huntington</h2>
+				      <ul>
+				      	<li class="fragment" style = "text-align: justify;">Para todo elemento <span style="color: #f4a261;">a</span> en el conjunto <span style="color: #f4a261;">$B$</span>, existe un elemento <span style="color: #f4a261;">$\bar{a}$</span> en <span style="color: #f4a261;">$B$</span> tal que:</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a+\bar{a} = 1 \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a\cdot \bar{a} = 0 \,$</span></li>
+								</ul>
+								<li class="fragment" style = "text-align: justify;">Existen por lo menos, dos elementos distintos en <span style="color: #f4a261;">$B$</span>.</li>
+				      </ul>
+					</section>
+
+
+					<section data-transition="zoom">
+						  <h2>Teorema de Demorgan</h2>
+				      <ul>
+				      	<li class="fragment" style = "text-align: justify;">Un teorema importante en el álgebra Booleana es el teorema de DeMorgan, el cual está dado por:</li>
+                <ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$\overline{a+b} = \overline{a}\cdot \overline{b} \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$\overline{a\cdot b} = \overline{a} + \overline{b} \,$</span></li>
+								</ul>
+				      </ul>
+					</section>
+
+					<section data-transition="zoom">
+							<h2>Otras propiedades</h2>
+							<ul>
+								<li class="fragment" style = "text-align: justify;">Otras propiedades importantes del álgebra Booleana son:</li>
+								<ul>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a+a = a \,$</span> y  <span style="color: #f4a261;">$\, a \cdot a = a \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a \cdot 0 = 0 \cdot a = 0 \,$</span> y <span style="color: #f4a261;">$\, a +1 = 1+a = 1 \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$\overline{\overline{(a)}} = a \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a + a\cdot b = a \,$</span> y  <span style="color: #f4a261;">$\, a \cdot (a+b) = a \,$</span></li>
+									<li class="fragment" style = "text-align: justify;"><span style="color: #f4a261;">$a + \bar{a} \cdot b = a+b \,$</span> y <span style="color: #f4a261;">$a \cdot (\bar{a}+b) = a\cdot b \,$</span></li>
+								</ul>
+							</ul>
+					</section>
+
+
+					<section data-transition="zoom">
+							<h2>Ejercicios</h2>
+							<ul>
+								<li class="fragment" style = "text-align: left;">Simplificar la siguiente expresión Booleana: <span style="color: #f4a261;">$h(A,B,C) = BC + B\bar{C} + BA$</span></li>
+								<li class="fragment" style = "text-align: left;">Hallar una versión simplificada de: <span style="color: #f4a261;">$f(w,x,y,z) = \bar{w}\bar{x}z + \bar{w}xz + xyz + wxy$</span></li>
+								<li class="fragment" style = "text-align: left;">Simplifcar la siguiente función: <span style="color: #f4a261;">$g(A,B,C,D) = AB\bar{C}+ABC+BCD + \bar{A}CD + A\bar{B}\bar{C}D$</span></li>
+								<li class="fragment" style = "text-align: left;">Simplifcar la siguiente función: <span style="color: #f4a261;">$f(A,B,C,D,E) = A+ \bar{A}B + \bar{A}\bar{B}C + \bar{A}\bar{B}\bar{C}D + \bar{A}\bar{B}\bar{C}\bar{D}E$</span></li>
+							</ul>
+					</section>
+
+
+					<section data-transition="zoom">
+							<h2>Algebra de conmutación</h2>
+							<ul>
+								<li class="fragment" style = "text-align: justify;">Un álgebra de conmutación es un álgebra Booleana en el que el número de elementos en <span style="color: #f4a261;">$B \,$</span> es exactamente $2$.</li>
+								<li class="fragment" style = "text-align: justify;">En una álgebra de conmutación, los operadores $+$ y $\cdot$ son llamados <span style="color: #f4a261;">OR</span> y <span style="color: #f4a261;">AND</span>, mientras que el operador $\stackrel{\overline{}}{}$ se llama <span style="color: #f4a261;">NOT</span>.</li>
+								<li class="fragment" style = "text-align: justify;">El comportamiento de los operadores <span style="color: #f4a261;">AND</span>, <span style="color: #f4a261;">OR</span> y <span style="color: #f4a261;">NOT</span> puede ser deducido mediante el análisis de los postulados anteriores.</li>
+							</ul>
+					</section>
+
+
+					<section data-transition="zoom">
+							<h2>Funciones Booleanas</h2>
+							<ul>
+								<li class="fragment" style = "text-align: justify;">En múltiples ocasiones obtendremos una función Booleana que precisa de una representación más económica en el sentido del número de variables o constantes Booleanas.</li>
+								<li class="fragment" syle = "text-align: justify;">Para obtener una versión más simple de una función Booleana aplicamos los postulados y teoremas.</li>
+								<li class="fragment" style = "text-align: justify;">Una versión más simple de una función tiene por efecto un menor número de compuertas lógicas.</li>
+							</ul>
+					</section>
+
+					<section data-transition="zoom">
+							<h2>Compuertas lógicas</h2>
+							<ul>
+								<li class="fragment" style = "text-align: justify;">Una compuerta lógica, es un dispositivo electrónico que implementa una función booleana simple.</li>
+								<li class="fragment" syle = "text-align: justify;">Para funciones lógicas más complejas se interconectan varias compuertas lógicas con el propósito de implementar dicha función.</li>
+								<li class="fragment" style = "text-align: justify;">Usualmente, un conjunto completo de funciones Booleanas se utiliza para implementar cualquier función Booleana, por ejemplo, <span style="color: #f4a261;">AND, OR y NOT</span>.</li>
+							</ul>
+					</section>
+
+
+
+				<section data-transition="zoom">
+					<h2>Compuerta OR</h2>
+					<img style= "width:70%;" src="img/or-gate.jpg" alt="OR-gate">
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Compuerta AND</h2>
+					<img style= "width:70%;" src="img/and-gate.jpg" alt="AND gate">
+				</section>
+
+				<section data-transition="zoom">
+					<h2>Compuerta NOT</h2>
+					<img style= "width:70%;" src="img/not-gate.jpg" alt="AND gate">
+				</section>
+
+
+				<section>
+
+					<h2>¿Preguntas?</h2>
+
+				</section>
+
+
+
+
+
+
+
+
+
+			</div>
+
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				math: {
+					//	mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+					config: 'TeX-AMS_HTML-full'
+				},
+
+				menu: {
+		// Specifies which side of the presentation the menu will
+		// be shown. Use 'left' or 'right'.
+		side: 'left',
+
+		// Add slide numbers to the titles in the slide list.
+		// Use 'true' or format string (same as reveal.js slide numbers)
+		numbers: false,
+
+		// Specifies which slide elements will be used for generating
+		// the slide titles in the menu. The default selects the first
+		// heading element found in the slide, but you can specify any
+		// valid css selector and the text from the first matching
+		// element will be used.
+		// Note: that a section data-menu-title attribute or an element
+		// with a menu-title class will take precedence over this option
+		titleSelector: 'h1, h2, h3, h4, h5, h6',
+
+		// If slides do not have a matching title, attempt to use the
+		// start of the text content as the title instead
+		useTextContentForMissingTitles: false,
+
+		// Hide slides from the menu that do not have a title.
+		// Set to 'true' to only list slides with titles.
+		hideMissingTitles: false,
+
+		// Adds markers to the slide titles to indicate the
+		// progress through the presentation. Set to 'false'
+		// to hide the markers.
+		markers: true,
+
+		// Specify custom panels to be included in the menu, by
+		// providing an array of objects with 'title', 'icon'
+		// properties, and either a 'src' or 'content' property.
+		custom: false,
+
+		// Specifies the themes that will be available in the themes
+		// menu panel. Set to 'true' to show the themes menu panel
+		// with the default themes list. Alternatively, provide an
+		// array to specify the themes to make available in the
+		// themes menu panel, for example...
+		// [
+		//     { name: 'Black', theme: 'css/theme/black.css' },
+		//     { name: 'White', theme: 'css/theme/white.css' },
+		//     { name: 'League', theme: 'css/theme/league.css' }
+		// ]
+		themes: false,
+
+		// Specifies the path to the default theme files. If your
+		// presentation uses a different path to the standard reveal
+		// layout then you need to provide this option, but only
+		// when 'themes' is set to 'true'. If you provide your own
+		// list of themes or 'themes' is set to 'false' the
+		// 'themesPath' option is ignored.
+		themesPath: 'css/theme/',
+
+		// Specifies if the transitions menu panel will be shown.
+		// Set to 'true' to show the transitions menu panel with
+		// the default transitions list. Alternatively, provide an
+		// array to specify the transitions to make available in
+		// the transitions panel, for example...
+		// ['None', 'Fade', 'Slide']
+		transitions: false,
+
+		// Adds a menu button to the slides to open the menu panel.
+		// Set to 'false' to hide the button.
+		openButton: true,
+
+		// If 'true' allows the slide number in the presentation to
+		// open the menu panel. The reveal.js slideNumber option must
+		// be displayed for this to take effect
+		openSlideNumber: false,
+
+		// If true allows the user to open and navigate the menu using
+		// the keyboard. Standard keyboard interaction with reveal
+		// will be disabled while the menu is open.
+		keyboard: true,
+
+		// Normally the menu will close on user actions such as
+		// selecting a menu item, or clicking the presentation area.
+		// If 'true', the sticky option will leave the menu open
+		// until it is explicitly closed, that is, using the close
+		// button or pressing the ESC or m key (when the keyboard
+		// interaction option is enabled).
+		sticky: false,
+
+		// If 'true' standard menu items will be automatically opened
+		// when navigating using the keyboard. Note: this only takes
+		// effect when both the 'keyboard' and 'sticky' options are enabled.
+		autoOpen: true,
+
+		// If 'true' the menu will not be created until it is explicitly
+		// requested by calling RevealMenu.init(). Note this will delay
+		// the creation of all menu panels, including custom panels, and
+		// the menu button.
+		delayInit: false,
+
+		// If 'true' the menu will be shown when the menu is initialised.
+		openOnInit: false,
+
+		// By default the menu will load it's own font-awesome library
+		// icons. If your presentation needs to load a different
+		// font-awesome library the 'loadIcons' option can be set to false
+		// and the menu will not attempt to load the font-awesome library.
+		loadIcons: true
+	},
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/math/math.js', async: true },
+					{src: 'plugin/menu/menu.js'},
+					//{ src: 'plugin/katex/katex.js', async: true},
+					//{ src: '../math-katex/math-katex.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+			// JulioCRDev   slideshow
+			var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" w3-white", "");
+  }
+  x[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " w3-white";
+}
+
+
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 2000);
+}
+
+		</script>
+
+	</body>
+</html>
